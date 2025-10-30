@@ -20,6 +20,8 @@ DEFAULT_PARAMETERS = {
     "author_name": "None",
     "author_email": "None",
 }
+JS_PKG_MGR_ARGS = ["algokit", "config", "js-package-manager", "npm"]
+PY_PKG_MGR_ARGS = ["algokit", "config", "py-package-manager", "poetry"]
 INSTALL_ARGS = ["algokit", "project", "bootstrap", "all", "--no-ci"]
 BUILD_ARGS = ["algokit", "project", "run", "build"]
 TEST_ARGS = ["algokit", "project", "run", "test"]
@@ -166,7 +168,7 @@ def run_init(
     if result.returncode:
         return result
 
-    check_args = [INSTALL_ARGS, BUILD_ARGS]
+    check_args = [JS_PKG_MGR_ARGS, PY_PKG_MGR_ARGS, INSTALL_ARGS, BUILD_ARGS]
 
     if answers["preset_name"] == "production":
         check_args.extend([TEST_ARGS, LINT_ARGS])
