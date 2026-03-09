@@ -1,3 +1,4 @@
+import os
 import re
 import shutil
 import subprocess
@@ -151,9 +152,7 @@ def run_init(
             )
             process.stdin.write(answer)
             process.stdin.flush()
-
         time.sleep(0.1)
-
     # Get the output
     stdout, stderr = process.communicate()
 
@@ -237,6 +236,25 @@ def get_answered_questions_from_copier_yaml(
     answers["deployment_language"] = deployment_language
     answers["contract_template"] = contract_template
     answers["ide_vscode"] = "yes" if ide_vscode else "no"
+
+    frontend_template_url = os.getenv("FRONTEND_TEMPLATE_URL")
+    frontend_template_ref = os.getenv("FRONTEND_TEMPLATE_REF")
+    contract_template_url = os.getenv("CONTRACT_TEMPLATE_URL")
+    contract_template_ref = os.getenv("CONTRACT_TEMPLATE_REF")
+    contract_template_url = os.getenv(
+        f"{contract_template.upper()}_CONTRACT_TEMPLATE_URL", contract_template_url
+    )
+    contract_template_ref = os.getenv(
+        f"{contract_template.upper()}_CONTRACT_TEMPLATE_REF", contract_template_ref
+    )
+    if frontend_template_url:
+        answers["frontend_template_url"] = frontend_template_url
+    if frontend_template_ref:
+        answers["frontend_template_ref"] = frontend_template_ref
+    if contract_template_url:
+        answers["contract_template_url"] = contract_template_url
+    if contract_template_ref:
+        answers["contract_template_ref"] = contract_template_ref
 
     return answers
 
