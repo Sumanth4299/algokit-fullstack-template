@@ -22,8 +22,8 @@ _tasks:
     -a use_github_actions "{{ use_github_actions }}"'
 
   - "echo '==== 3/4 - Initializing contract template ===='"
-  - 'algokit init {{ "--template-url \"" ~ (contract_template_url if contract_template_url else ("gh:algorandfoundation/algokit-python-template" if contract_template == "python" else "gh:algorandfoundation/algokit-typescript-template" if contract_template == "typescript" else "gh:algorand-devrel/tealscript-algokit-template")) ~ "\" --UNSAFE-SECURITY-accept-template-url" if (contract_template_url or (contract_template_ref and (contract_template != "tealscript" or contract_template_ref != "prep/beta-release"))) else "-t " ~ contract_template }} -n {{ project_name }}-contracts --no-git --no-ide --no-bootstrap
-    {% if contract_template_ref and (contract_template != "tealscript" or contract_template_ref != "prep/beta-release") %}
+  - 'algokit init {{ "--template-url \"" ~ (contract_template_url if contract_template_url else ("gh:algorandfoundation/algokit-python-template" if contract_template == "python" else "gh:algorandfoundation/algokit-typescript-template" if contract_template == "typescript" else "gh:algorand-devrel/tealscript-algokit-template")) ~ "\" --UNSAFE-SECURITY-accept-template-url" if (contract_template_url or contract_template_ref) else "-t " ~ contract_template }} -n {{ project_name }}-contracts --no-git --no-ide --no-bootstrap
+    {% if contract_template_ref %}
     --template-url-ref "{{ contract_template_ref }}"
     {% endif %}
     -a author_email "{{ author_email }}"
@@ -66,7 +66,7 @@ frontend_template_ref:
   type: str
   help: Override git ref (branch/tag) for frontend child template.
   when: false
-  default: 'prep/beta-release'
+  default: ''
 
 contract_template_url:
   type: str
@@ -78,7 +78,7 @@ contract_template_ref:
   type: str
   help: Override git ref (branch/tag) for contract child template.
   when: false
-  default: 'prep/beta-release'
+  default: ''
 
 project_name:
   type: str
