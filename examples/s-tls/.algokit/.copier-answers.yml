@@ -1,6 +1,6 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: <commit>
-_src_path: <src>
+_commit: 2.1.8-8-g954a453
+_src_path: ..
 author_email: None
 author_name: None
 contract_name: Calculator
