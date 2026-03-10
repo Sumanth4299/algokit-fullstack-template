@@ -52,8 +52,8 @@ jobs:
       - name: Run tests
         shell: bash
         env:
-          FRONTEND_TEMPLATE_URL: gh:algorandfoundation/algokit-react-frontend-template
-          FRONTEND_TEMPLATE_REF: prep/beta-release
+          FRONTEND_TEMPLATE_URL: gh:algorandfoundation/algokit-react-frontend-template # If empty defaults to production templates on algokit cli
+          FRONTEND_TEMPLATE_REF: prep/beta-release # If empty defaults to production templates on algokit cli
         run: |
           set -o pipefail
           poetry run pytest --junitxml=pytest-junit.xml -n 1

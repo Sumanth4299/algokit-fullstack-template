@@ -14,7 +14,7 @@ import { SendParams,SendTransactionComposerResults  } from '@algorandfoundation/
 import { AppFactoryCreateMethodCallParams, AppFactoryAppClientParams, AppFactoryDeployParams, AppFactoryParams, AppFactory as _AppFactory, AppFactoryResolveAppClientByCreatorAndNameParams, CreateSchema  } from '@algorandfoundation/algokit-utils/types/app-factory'
 import { TransactionComposer, TransactionComposerConfig, SkipSignaturesSimulateOptions, RawSimulateOptions, SimulateOptions, AppMethodCallTransactionArgument } from '@algorandfoundation/algokit-utils/types/composer'
 
-export const APP_SPEC: Arc56Contract = {"name":"HelloWorld","structs":{},"methods":[{"name":"hello","args":[{"type":"string","name":"name"}],"returns":{"type":"string"},"actions":{"create":[],"call":["NoOp"]},"readonly":false,"events":[],"recommendations":{}}],"arcs":[22,28],"networks":{},"state":{"schema":{"global":{"ints":0,"bytes":0},"local":{"ints":0,"bytes":0}},"keys":{"global":{},"local":{},"box":{}},"maps":{"global":{},"local":{},"box":{}}},"bareActions":{"create":["NoOp"],"call":[]},"sourceInfo":{"approval":{"sourceInfo":[{"pc":[44],"errorMessage":"invalid array length header"},{"pc":[52],"errorMessage":"invalid number of bytes for arc4.dynamic_array<arc4.uint8>"}],"pcOffsetMethod":"none"},"clear":{"sourceInfo":[],"pcOffsetMethod":"none"}},"source":{"approval":"I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBIZWxsb1dvcmxkKEFSQzRDb250cmFjdCk6CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUA1CiAgICBwdXNoYnl0ZXMgMHgwMmJlY2UxMSAvLyBtZXRob2QgImhlbGxvKHN0cmluZylzdHJpbmciCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtYWluX2hlbGxvX3JvdXRlQDMKICAgIGVycgoKbWFpbl9oZWxsb19yb3V0ZUAzOgogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjYKICAgIC8vIEBhYmltZXRob2QoKQogICAgdHhuIE9uQ29tcGxldGlvbgogICAgIQogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgICYmCiAgICBhc3NlcnQKICAgIGIgaGVsbG8KCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVANToKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICAmJgogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmhlbGxvX3dvcmxkLmNvbnRyYWN0LkhlbGxvV29ybGQuaGVsbG9bcm91dGluZ10oKSAtPiB2b2lkOgpoZWxsbzoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo2CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGR1cAogICAgcHVzaGludCAwCiAgICBleHRyYWN0X3VpbnQxNiAvLyBvbiBlcnJvcjogaW52YWxpZCBhcnJheSBsZW5ndGggaGVhZGVyCiAgICBwdXNoaW50IDIKICAgICsKICAgIGRpZyAxCiAgICBsZW4KICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQuZHluYW1pY19hcnJheTxhcmM0LnVpbnQ4PgogICAgZXh0cmFjdCAyIDAKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo4CiAgICAvLyByZXR1cm4gIkhlbGxvLCAiICsgbmFtZQogICAgcHVzaGJ5dGVzICJIZWxsbywgIgogICAgc3dhcAogICAgY29uY2F0CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6NgogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBkdXAKICAgIGxlbgogICAgaXRvYgogICAgZXh0cmFjdCA2IDIKICAgIHN3YXAKICAgIGNvbmNhdAogICAgcHVzaGJ5dGVzIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBwdXNoaW50IDEKICAgIHJldHVybgo=","clear":"I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="},"byteCode":{"approval":"CzEbQQAYgAQCvs4RNhoAjgEAAQAxGRQxGBBEQgAIMRkUMRgUEEM2GgFJgQBZgQIISwEVEkRXAgCAB0hlbGxvLCBMUEkVFlcGAkxQgAQVH3x1TFCwgQFD","clear":"C4EBQw=="},"events":[],"templateVariables":{}} as unknown as Arc56Contract
+export const APP_SPEC: Arc56Contract = {"name":"VerifierContract","structs":{},"methods":[{"name":"verify","args":[],"returns":{"type":"void"},"actions":{"create":[],"call":["NoOp"]},"readonly":false,"events":[],"recommendations":{}}],"arcs":[22,28],"networks":{},"state":{"schema":{"global":{"ints":0,"bytes":0},"local":{"ints":0,"bytes":0}},"keys":{"global":{},"local":{},"box":{}},"maps":{"global":{},"local":{},"box":{}}},"bareActions":{"create":["NoOp"],"call":[]},"sourceInfo":{"approval":{"sourceInfo":[{"pc":[56],"errorMessage":"Txn must be pay"}],"pcOffsetMethod":"none"},"clear":{"sourceInfo":[],"pcOffsetMethod":"none"}},"source":{"approval":"I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIC8vIHRlc3RzL2FydGlmYWN0cy9keW5hbWljX2l0eG5fZ3JvdXAvdmVyaWZpZXIucHk6MTEKICAgIC8vIGNsYXNzIFZlcmlmaWVyQ29udHJhY3QoQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX19fYWxnb3B5X2RlZmF1bHRfY3JlYXRlQDUKICAgIHB1c2hieXRlcyAweDY1YTlhZWNjIC8vIG1ldGhvZCAidmVyaWZ5KCl2b2lkIgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMAogICAgbWF0Y2ggbWFpbl92ZXJpZnlfcm91dGVAMwogICAgZXJyCgptYWluX3ZlcmlmeV9yb3V0ZUAzOgogICAgLy8gdGVzdHMvYXJ0aWZhY3RzL2R5bmFtaWNfaXR4bl9ncm91cC92ZXJpZmllci5weToxMgogICAgLy8gQGFyYzQuYWJpbWV0aG9kCiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgJiYKICAgIGFzc2VydAogICAgYiB2ZXJpZnkKCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVANToKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICAmJgogICAgcmV0dXJuCgoKLy8gdGVzdHMuYXJ0aWZhY3RzLmR5bmFtaWNfaXR4bl9ncm91cC52ZXJpZmllci5WZXJpZmllckNvbnRyYWN0LnZlcmlmeVtyb3V0aW5nXSgpIC0+IHZvaWQ6CnZlcmlmeToKICAgIC8vIHRlc3RzL2FydGlmYWN0cy9keW5hbWljX2l0eG5fZ3JvdXAvdmVyaWZpZXIucHk6MTQKICAgIC8vIGZvciBpIGluIHVyYW5nZShUeG4uZ3JvdXBfaW5kZXgpOgogICAgdHhuIEdyb3VwSW5kZXgKICAgIHB1c2hpbnQgMAoKdmVyaWZ5X2Zvcl9oZWFkZXJAMjoKICAgIC8vIHRlc3RzL2FydGlmYWN0cy9keW5hbWljX2l0eG5fZ3JvdXAvdmVyaWZpZXIucHk6MTQKICAgIC8vIGZvciBpIGluIHVyYW5nZShUeG4uZ3JvdXBfaW5kZXgpOgogICAgZHVwCiAgICBkaWcgMgogICAgPAogICAgYnogdmVyaWZ5X2FmdGVyX2ZvckA1CiAgICAvLyB0ZXN0cy9hcnRpZmFjdHMvZHluYW1pY19pdHhuX2dyb3VwL3ZlcmlmaWVyLnB5OjE2CiAgICAvLyBhc3NlcnQgdHhuLnR5cGUgPT0gVHJhbnNhY3Rpb25UeXBlLlBheW1lbnQsICJUeG4gbXVzdCBiZSBwYXkiCiAgICBkdXBuIDIKICAgIGd0eG5zIFR5cGVFbnVtCiAgICBwdXNoaW50IDEgLy8gcGF5CiAgICA9PQogICAgYXNzZXJ0IC8vIFR4biBtdXN0IGJlIHBheQogICAgLy8gdGVzdHMvYXJ0aWZhY3RzL2R5bmFtaWNfaXR4bl9ncm91cC92ZXJpZmllci5weToxNAogICAgLy8gZm9yIGkgaW4gdXJhbmdlKFR4bi5ncm91cF9pbmRleCk6CiAgICBwdXNoaW50IDEKICAgICsKICAgIGJ1cnkgMQogICAgYiB2ZXJpZnlfZm9yX2hlYWRlckAyCgp2ZXJpZnlfYWZ0ZXJfZm9yQDU6CiAgICAvLyB0ZXN0cy9hcnRpZmFjdHMvZHluYW1pY19pdHhuX2dyb3VwL3ZlcmlmaWVyLnB5OjEyCiAgICAvLyBAYXJjNC5hYmltZXRob2QKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg==","clear":"I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="},"byteCode":{"approval":"CzEbQQAYgARlqa7MNhoAjgEAAQAxGRQxGBBEQgAIMRkUMRgUEEMxFoEASUsCDEEAEEcCOBCBARJEgQEIRQFC/+mBAUM=","clear":"C4EBQw=="},"events":[],"templateVariables":{}} as unknown as Arc56Contract
 
 /**
  * A state record containing binary data
@@ -54,55 +54,49 @@ export type Expand<T> = T extends (...args: infer A) => infer R
 
 
 /**
- * The argument types for the HelloWorld contract
+ * The argument types for the VerifierContract contract
  */
-export type HelloWorldArgs = {
+export type VerifierContractArgs = {
   /**
    * The object representation of the arguments for each method
    */
   obj: {
-    'hello(string)string': {
-      name: string
-    }
+    'verify()void': Record<string, never>
   }
   /**
    * The tuple representation of the arguments for each method
    */
   tuple: {
-    'hello(string)string': [name: string]
+    'verify()void': []
   }
 }
 
 /**
  * The return type for each method
  */
-export type HelloWorldReturns = {
-  'hello(string)string': string
+export type VerifierContractReturns = {
+  'verify()void': void
 }
 
 /**
- * Defines the types of available calls and state of the HelloWorld smart contract.
+ * Defines the types of available calls and state of the VerifierContract smart contract.
  */
-export type HelloWorldTypes = {
+export type VerifierContractTypes = {
   /**
    * Maps method signatures / names to their argument and return types.
    */
   methods:
-    & Record<'hello(string)string' | 'hello', {
-      argsObj: HelloWorldArgs['obj']['hello(string)string']
-      argsTuple: HelloWorldArgs['tuple']['hello(string)string']
-      returns: HelloWorldReturns['hello(string)string']
+    & Record<'verify()void' | 'verify', {
+      argsObj: VerifierContractArgs['obj']['verify()void']
+      argsTuple: VerifierContractArgs['tuple']['verify()void']
+      returns: VerifierContractReturns['verify()void']
     }>
 }
 
 /**
  * Defines the possible abi call signatures.
  */
-export type HelloWorldSignatures = keyof HelloWorldTypes['methods']
-/**
- * Defines the possible abi call signatures for methods that return a non-void value.
- */
-export type HelloWorldNonVoidMethodSignatures = keyof HelloWorldTypes['methods'] extends infer T ? T extends keyof HelloWorldTypes['methods'] ? MethodReturn<T> extends void ? never : T  : never : never
+export type VerifierContractSignatures = keyof VerifierContractTypes['methods']
 /**
  * Defines an object containing all relevant parameters for a single call to the contract.
  */
@@ -114,61 +108,61 @@ export type CallParams<TArgs> = Expand<
     }
 >
 /**
- * Maps a method signature from the HelloWorld smart contract to the method's arguments in either tuple or struct form
+ * Maps a method signature from the VerifierContract smart contract to the method's arguments in either tuple or struct form
  */
-export type MethodArgs<TSignature extends HelloWorldSignatures> = HelloWorldTypes['methods'][TSignature]['argsObj' | 'argsTuple']
+export type MethodArgs<TSignature extends VerifierContractSignatures> = VerifierContractTypes['methods'][TSignature]['argsObj' | 'argsTuple']
 /**
- * Maps a method signature from the HelloWorld smart contract to the method's return type
+ * Maps a method signature from the VerifierContract smart contract to the method's return type
  */
-export type MethodReturn<TSignature extends HelloWorldSignatures> = HelloWorldTypes['methods'][TSignature]['returns']
+export type MethodReturn<TSignature extends VerifierContractSignatures> = VerifierContractTypes['methods'][TSignature]['returns']
 
 
 /**
  * Defines supported create method params for this smart contract
  */
-export type HelloWorldCreateCallParams =
+export type VerifierContractCreateCallParams =
   | Expand<AppClientBareCallParams & {method?: never} & { onComplete?: OnApplicationComplete.NoOp } & CreateSchema>
 /**
  * Defines arguments required for the deploy method.
  */
-export type HelloWorldDeployParams = Expand<Omit<AppFactoryDeployParams, 'createParams' | 'updateParams' | 'deleteParams'> & {
+export type VerifierContractDeployParams = Expand<Omit<AppFactoryDeployParams, 'createParams' | 'updateParams' | 'deleteParams'> & {
   /**
    * Create transaction parameters to use if a create needs to be issued as part of deployment; use `method` to define ABI call (if available) or leave out for a bare call (if available)
    */
-  createParams?: HelloWorldCreateCallParams
+  createParams?: VerifierContractCreateCallParams
 }>
 
 
 /**
- * Exposes methods for constructing `AppClient` params objects for ABI calls to the HelloWorld smart contract
+ * Exposes methods for constructing `AppClient` params objects for ABI calls to the VerifierContract smart contract
  */
-export abstract class HelloWorldParamsFactory {
+export abstract class VerifierContractParamsFactory {
   /**
-   * Constructs a no op call for the hello(string)string ABI method
+   * Constructs a no op call for the verify()void ABI method
    *
    * @param params Parameters for the call
    * @returns An `AppClientMethodCallParams` object for the call
    */
-  static hello(params: CallParams<HelloWorldArgs['obj']['hello(string)string'] | HelloWorldArgs['tuple']['hello(string)string']> & CallOnComplete): AppClientMethodCallParams & CallOnComplete {
+  static verify(params: CallParams<VerifierContractArgs['obj']['verify()void'] | VerifierContractArgs['tuple']['verify()void']> & CallOnComplete): AppClientMethodCallParams & CallOnComplete {
     return {
       ...params,
-      method: 'hello(string)string' as const,
-      args: Array.isArray(params.args) ? params.args : [params.args.name],
+      method: 'verify()void' as const,
+      args: Array.isArray(params.args) ? params.args : [],
     }
   }
 }
 
 /**
- * A factory to create and deploy one or more instance of the HelloWorld smart contract and to create one or more app clients to interact with those (or other) app instances
+ * A factory to create and deploy one or more instance of the VerifierContract smart contract and to create one or more app clients to interact with those (or other) app instances
  */
-export class HelloWorldFactory {
+export class VerifierContractFactory {
   /**
    * The underlying `AppFactory` for when you want to have more flexibility
    */
   public readonly appFactory: _AppFactory
 
   /**
-   * Creates a new instance of `HelloWorldFactory`
+   * Creates a new instance of `VerifierContractFactory`
    *
    * @param params The parameters to initialise the app factory with
    */
@@ -203,7 +197,7 @@ export class HelloWorldFactory {
    * @returns The `AppClient`
    */
   public getAppClientById(params: AppFactoryAppClientParams) {
-    return new HelloWorldClient(this.appFactory.getAppClientById(params))
+    return new VerifierContractClient(this.appFactory.getAppClientById(params))
   }
   
   /**
@@ -218,20 +212,20 @@ export class HelloWorldFactory {
   public async getAppClientByCreatorAndName(
     params: AppFactoryResolveAppClientByCreatorAndNameParams,
   ) {
-    return new HelloWorldClient(await this.appFactory.getAppClientByCreatorAndName(params))
+    return new VerifierContractClient(await this.appFactory.getAppClientByCreatorAndName(params))
   }
 
   /**
-   * Idempotently deploys the HelloWorld smart contract.
+   * Idempotently deploys the VerifierContract smart contract.
    *
    * @param params The arguments for the contract calls and any additional parameters for the call
    * @returns The deployment result
    */
-  public async deploy(params: HelloWorldDeployParams = {}) {
+  public async deploy(params: VerifierContractDeployParams = {}) {
     const result = await this.appFactory.deploy({
       ...params,
     })
-    return { result: result.result, appClient: new HelloWorldClient(result.appClient) }
+    return { result: result.result, appClient: new VerifierContractClient(result.appClient) }
   }
 
   /**
@@ -243,7 +237,7 @@ export class HelloWorldFactory {
      */
     create: {
       /**
-       * Creates a new instance of the HelloWorld smart contract using a bare call.
+       * Creates a new instance of the VerifierContract smart contract using a bare call.
        *
        * @param params The params for the bare (raw) call
        * @returns The params for a create call
@@ -264,7 +258,7 @@ export class HelloWorldFactory {
      */
     create: {
       /**
-       * Creates a new instance of the HelloWorld smart contract using a bare call.
+       * Creates a new instance of the VerifierContract smart contract using a bare call.
        *
        * @param params The params for the bare (raw) call
        * @returns The transaction for a create call
@@ -285,14 +279,14 @@ export class HelloWorldFactory {
      */
     create: {
       /**
-       * Creates a new instance of the HelloWorld smart contract using a bare call.
+       * Creates a new instance of the VerifierContract smart contract using a bare call.
        *
        * @param params The params for the bare (raw) call
        * @returns The create result
        */
       bare: async (params?: Expand<AppClientBareCallParams & AppClientCompilationParams & CreateSchema & SendParams & { onComplete?: OnApplicationComplete.NoOp }>) => {
         const result = await this.appFactory.send.bare.create(params)
-        return { result: result.result, appClient: new HelloWorldClient(result.appClient) }
+        return { result: result.result, appClient: new VerifierContractClient(result.appClient) }
       },
     },
 
@@ -300,22 +294,22 @@ export class HelloWorldFactory {
 
 }
 /**
- * A client to make calls to the HelloWorld smart contract
+ * A client to make calls to the VerifierContract smart contract
  */
-export class HelloWorldClient {
+export class VerifierContractClient {
   /**
    * The underlying `AppClient` for when you want to have more flexibility
    */
   public readonly appClient: _AppClient
 
   /**
-   * Creates a new instance of `HelloWorldClient`
+   * Creates a new instance of `VerifierContractClient`
    *
-   * @param appClient An `AppClient` instance which has been created with the HelloWorld app spec
+   * @param appClient An `AppClient` instance which has been created with the VerifierContract app spec
    */
   constructor(appClient: _AppClient)
   /**
-   * Creates a new instance of `HelloWorldClient`
+   * Creates a new instance of `VerifierContractClient`
    *
    * @param params The parameters to initialise the app client with
    */
@@ -328,16 +322,16 @@ export class HelloWorldClient {
   }
 
   /**
-   * Returns a new `HelloWorldClient` client, resolving the app by creator address and name
+   * Returns a new `VerifierContractClient` client, resolving the app by creator address and name
    * using AlgoKit app deployment semantics (i.e. looking for the app creation transaction note).
    * @param params The parameters to create the app client
    */
-  public static async fromCreatorAndName(params: Omit<ResolveAppClientByCreatorAndName, 'appSpec'>): Promise<HelloWorldClient> {
-    return new HelloWorldClient(await _AppClient.fromCreatorAndName({...params, appSpec: APP_SPEC}))
+  public static async fromCreatorAndName(params: Omit<ResolveAppClientByCreatorAndName, 'appSpec'>): Promise<VerifierContractClient> {
+    return new VerifierContractClient(await _AppClient.fromCreatorAndName({...params, appSpec: APP_SPEC}))
   }
   
   /**
-   * Returns an `HelloWorldClient` instance for the current network based on
+   * Returns an `VerifierContractClient` instance for the current network based on
    * pre-determined network-specific app IDs specified in the ARC-56 app spec.
    *
    * If no IDs are in the app spec or the network isn't recognised, an error is thrown.
@@ -345,8 +339,8 @@ export class HelloWorldClient {
    */
   static async fromNetwork(
     params: Omit<ResolveAppClientByNetwork, 'appSpec'>
-  ): Promise<HelloWorldClient> {
-    return new HelloWorldClient(await _AppClient.fromNetwork({...params, appSpec: APP_SPEC}))
+  ): Promise<VerifierContractClient> {
+    return new VerifierContractClient(await _AppClient.fromNetwork({...params, appSpec: APP_SPEC}))
   }
   
   /** The ID of the app instance this client is linked to. */
@@ -379,7 +373,7 @@ export class HelloWorldClient {
    */
   readonly params = {
     /**
-     * Makes a clear_state call to an existing instance of the HelloWorld smart contract.
+     * Makes a clear_state call to an existing instance of the VerifierContract smart contract.
      *
      * @param params The params for the bare (raw) call
      * @returns The clearState result
@@ -389,13 +383,13 @@ export class HelloWorldClient {
     },
 
     /**
-     * Makes a call to the HelloWorld smart contract using the `hello(string)string` ABI method.
+     * Makes a call to the VerifierContract smart contract using the `verify()void` ABI method.
      *
      * @param params The params for the smart contract call
      * @returns The call params
      */
-    hello: (params: CallParams<HelloWorldArgs['obj']['hello(string)string'] | HelloWorldArgs['tuple']['hello(string)string']> & { onComplete?: OnApplicationComplete.NoOp }) => {
-      return this.appClient.params.call(HelloWorldParamsFactory.hello(params))
+    verify: (params: CallParams<VerifierContractArgs['obj']['verify()void'] | VerifierContractArgs['tuple']['verify()void']> & { onComplete?: OnApplicationComplete.NoOp } = {args: []}) => {
+      return this.appClient.params.call(VerifierContractParamsFactory.verify(params))
     },
 
   }
@@ -405,7 +399,7 @@ export class HelloWorldClient {
    */
   readonly createTransaction = {
     /**
-     * Makes a clear_state call to an existing instance of the HelloWorld smart contract.
+     * Makes a clear_state call to an existing instance of the VerifierContract smart contract.
      *
      * @param params The params for the bare (raw) call
      * @returns The clearState result
@@ -415,13 +409,13 @@ export class HelloWorldClient {
     },
 
     /**
-     * Makes a call to the HelloWorld smart contract using the `hello(string)string` ABI method.
+     * Makes a call to the VerifierContract smart contract using the `verify()void` ABI method.
      *
      * @param params The params for the smart contract call
      * @returns The call transaction
      */
-    hello: (params: CallParams<HelloWorldArgs['obj']['hello(string)string'] | HelloWorldArgs['tuple']['hello(string)string']> & { onComplete?: OnApplicationComplete.NoOp }) => {
-      return this.appClient.createTransaction.call(HelloWorldParamsFactory.hello(params))
+    verify: (params: CallParams<VerifierContractArgs['obj']['verify()void'] | VerifierContractArgs['tuple']['verify()void']> & { onComplete?: OnApplicationComplete.NoOp } = {args: []}) => {
+      return this.appClient.createTransaction.call(VerifierContractParamsFactory.verify(params))
     },
 
   }
@@ -431,7 +425,7 @@ export class HelloWorldClient {
    */
   readonly send = {
     /**
-     * Makes a clear_state call to an existing instance of the HelloWorld smart contract.
+     * Makes a clear_state call to an existing instance of the VerifierContract smart contract.
      *
      * @param params The params for the bare (raw) call
      * @returns The clearState result
@@ -441,14 +435,14 @@ export class HelloWorldClient {
     },
 
     /**
-     * Makes a call to the HelloWorld smart contract using the `hello(string)string` ABI method.
+     * Makes a call to the VerifierContract smart contract using the `verify()void` ABI method.
      *
      * @param params The params for the smart contract call
      * @returns The call result
      */
-    hello: async (params: CallParams<HelloWorldArgs['obj']['hello(string)string'] | HelloWorldArgs['tuple']['hello(string)string']> & SendParams & { onComplete?: OnApplicationComplete.NoOp }) => {
-      const result = await this.appClient.send.call(HelloWorldParamsFactory.hello(params))
-      return {...result, return: result.return as unknown as (undefined | HelloWorldReturns['hello(string)string'])}
+    verify: async (params: CallParams<VerifierContractArgs['obj']['verify()void'] | VerifierContractArgs['tuple']['verify()void']> & SendParams & { onComplete?: OnApplicationComplete.NoOp } = {args: []}) => {
+      const result = await this.appClient.send.call(VerifierContractParamsFactory.verify(params))
+      return {...result, return: result.return as unknown as (undefined | VerifierContractReturns['verify()void'])}
     },
 
   }
@@ -460,29 +454,29 @@ export class HelloWorldClient {
    * @returns A new app client with the altered params
    */
   public clone(params: CloneAppClientParams) {
-    return new HelloWorldClient(this.appClient.clone(params))
+    return new VerifierContractClient(this.appClient.clone(params))
   }
 
   /**
-   * Methods to access state for the current HelloWorld app
+   * Methods to access state for the current VerifierContract app
    */
   state = {
   }
 
-  public newGroup(composerConfig?: TransactionComposerConfig): HelloWorldComposer {
+  public newGroup(composerConfig?: TransactionComposerConfig): VerifierContractComposer {
     const client = this
     const composer = this.algorand.newGroup(composerConfig)
     let promiseChain:Promise<unknown> = Promise.resolve()
     return {
       /**
-       * Add a hello(string)string method call against the HelloWorld contract
+       * Add a verify()void method call against the VerifierContract contract
        */
-      hello(params: CallParams<HelloWorldArgs['obj']['hello(string)string'] | HelloWorldArgs['tuple']['hello(string)string']> & { onComplete?: OnApplicationComplete.NoOp }) {
-        promiseChain = promiseChain.then(async () => composer.addAppCallMethodCall(await client.params.hello(params)))
+      verify(params: CallParams<VerifierContractArgs['obj']['verify()void'] | VerifierContractArgs['tuple']['verify()void']> & { onComplete?: OnApplicationComplete.NoOp }) {
+        promiseChain = promiseChain.then(async () => composer.addAppCallMethodCall(await client.params.verify(params)))
         return this
       },
       /**
-       * Add a clear state call to the HelloWorld contract
+       * Add a clear state call to the VerifierContract contract
        */
       clearState(params: AppClientBareCallParams) {
         promiseChain = promiseChain.then(() => composer.addAppCall(client.params.clearState(params)))
@@ -512,25 +506,25 @@ export class HelloWorldClient {
           returns: result.returns?.map(val => val.returnValue)
         }
       }
-    } as unknown as HelloWorldComposer
+    } as unknown as VerifierContractComposer
   }
 }
-export type HelloWorldComposer<TReturns extends [...any[]] = []> = {
+export type VerifierContractComposer<TReturns extends [...any[]] = []> = {
   /**
-   * Calls the hello(string)string ABI method.
+   * Calls the verify()void ABI method.
    *
    * @param params Any additional parameters for the call
    * @returns The typed transaction composer so you can fluently chain multiple calls or call execute to execute all queued up transactions
    */
-  hello(params?: CallParams<HelloWorldArgs['obj']['hello(string)string'] | HelloWorldArgs['tuple']['hello(string)string']>): HelloWorldComposer<[...TReturns, HelloWorldReturns['hello(string)string'] | undefined]>
+  verify(params?: CallParams<VerifierContractArgs['obj']['verify()void'] | VerifierContractArgs['tuple']['verify()void']>): VerifierContractComposer<[...TReturns, VerifierContractReturns['verify()void'] | undefined]>
 
   /**
-   * Makes a clear_state call to an existing instance of the HelloWorld smart contract.
+   * Makes a clear_state call to an existing instance of the VerifierContract smart contract.
    *
    * @param params Any additional parameters for the bare call
    * @returns The typed transaction composer so you can fluently chain multiple calls or call execute to execute all queued up transactions
    */
-  clearState(params?: AppClientBareCallParams): HelloWorldComposer<[...TReturns, undefined]>
+  clearState(params?: AppClientBareCallParams): VerifierContractComposer<[...TReturns, undefined]>
 
   /**
    * Adds a transaction to the composer
@@ -538,7 +532,7 @@ export type HelloWorldComposer<TReturns extends [...any[]] = []> = {
    * @param txn A transaction to add to the transaction group
    * @param signer The optional signer to use when signing this transaction.
    */
-  addTransaction(txn: Transaction, signer?: TransactionSigner): HelloWorldComposer<TReturns>
+  addTransaction(txn: Transaction, signer?: TransactionSigner): VerifierContractComposer<TReturns>
   /**
    * Returns the underlying AtomicTransactionComposer instance
    */
@@ -546,15 +540,15 @@ export type HelloWorldComposer<TReturns extends [...any[]] = []> = {
   /**
    * Simulates the transaction group and returns the result
    */
-  simulate(): Promise<HelloWorldComposerResults<TReturns> & { simulateResponse: SimulateResponse }>
-  simulate(options: SkipSignaturesSimulateOptions): Promise<HelloWorldComposerResults<TReturns> & { simulateResponse: SimulateResponse }>
-  simulate(options: RawSimulateOptions): Promise<HelloWorldComposerResults<TReturns> & { simulateResponse: SimulateResponse }>
+  simulate(): Promise<VerifierContractComposerResults<TReturns> & { simulateResponse: SimulateResponse }>
+  simulate(options: SkipSignaturesSimulateOptions): Promise<VerifierContractComposerResults<TReturns> & { simulateResponse: SimulateResponse }>
+  simulate(options: RawSimulateOptions): Promise<VerifierContractComposerResults<TReturns> & { simulateResponse: SimulateResponse }>
   /**
    * Sends the transaction group to the network and returns the results
    */
-  send(params?: SendParams): Promise<HelloWorldComposerResults<TReturns>>
+  send(params?: SendParams): Promise<VerifierContractComposerResults<TReturns>>
 }
-export type HelloWorldComposerResults<TReturns extends [...any[]]> = Expand<SendTransactionComposerResults & {
+export type VerifierContractComposerResults<TReturns extends [...any[]]> = Expand<SendTransactionComposerResults & {
   returns: TReturns
 }>
 
