@@ -27,6 +27,7 @@ INSTALL_ARGS = ["algokit", "project", "bootstrap", "all", "--no-ci"]
 BUILD_ARGS = ["algokit", "project", "run", "build"]
 TEST_ARGS = ["algokit", "project", "run", "test"]
 LINT_ARGS = ["algokit", "project", "run", "lint"]
+DEFAULT_CHILD_TEMPLATE_REF = "prep/beta-release"
 
 
 def _load_copier_yaml(path: Path) -> dict[str, str | bool | dict]:
@@ -238,9 +239,13 @@ def get_answered_questions_from_copier_yaml(
     answers["ide_vscode"] = "yes" if ide_vscode else "no"
 
     frontend_template_url = os.getenv("FRONTEND_TEMPLATE_URL")
-    frontend_template_ref = os.getenv("FRONTEND_TEMPLATE_REF")
+    frontend_template_ref = os.getenv(
+        "FRONTEND_TEMPLATE_REF", DEFAULT_CHILD_TEMPLATE_REF
+    )
     contract_template_url = os.getenv("CONTRACT_TEMPLATE_URL")
-    contract_template_ref = os.getenv("CONTRACT_TEMPLATE_REF")
+    contract_template_ref = os.getenv(
+        "CONTRACT_TEMPLATE_REF", DEFAULT_CHILD_TEMPLATE_REF
+    )
     contract_template_url = os.getenv(
         f"{contract_template.upper()}_CONTRACT_TEMPLATE_URL", contract_template_url
     )
