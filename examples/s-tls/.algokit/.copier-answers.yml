@@ -1,6 +1,6 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 2.1.8-11-g7668422
-_src_path: /var/folders/96/k83m8nkj3ts72l4jw7378sm80000gn/T/tmpmq4qoksj/template
+_commit: <commit>
+_src_path: <src>
 author_email: None
 author_name: None
 contract_name: Calculator
