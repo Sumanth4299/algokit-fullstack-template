@@ -1,97 +1,64 @@
-import { useWallet } from '@txnlab/use-wallet-react'
-import { useSnackbar } from 'notistack'
-import { useState } from 'react'
-import { HelloWorldFactory } from '../contracts/HelloWorld'
-import { OnSchemaBreak, OnUpdate } from '@algorandfoundation/algokit-utils/types/app'
-import { getAlgodConfigFromViteEnvironment, getIndexerConfigFromViteEnvironment } from '../utils/network/getAlgoClientConfigs'
-import { AlgorandClient } from '@algorandfoundation/algokit-utils'
+import * as algosdk from 'algosdk'
+import { useWallet } from '@txnlab/use-wallet'
+import { AiMarketplaceClient } from '../contracts/AiMarketplace' // This is the client you built earlier
+import { getAlgodConfigFromViteEnvironment } from '../utils/network/getAlgoConfigViteEnvironment'
 
-interface AppCallsInterface {
-  openModal: boolean
-  setModalState: (value: boolean) => void
-}
+const AppCalls = () => {
+  const { activeAddress, signer } = useWallet() // This gets the user's wallet address
 
-const AppCalls = ({ openModal, setModalState }: AppCallsInterface) => {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [contractInput, setContractInput] = useState<string>('')
-  const { enqueueSnackbar } = useSnackbar()
-  const { transactionSigner, activeAddress } = useWallet()
-
-  const algodConfig = getAlgodConfigFromViteEnvironment()
-  const indexerConfig = getIndexerConfigFromViteEnvironment()
-  const algorand = AlgorandClient.fromConfig({
-    algodConfig,
-    indexerConfig,
-  })
-  algorand.setDefaultSigner(transactionSigner)
-
-  const sendAppCall = async () => {
-    setLoading(true)
-
-    // Please note, in typical production scenarios,
-    // you wouldn't want to use deploy directly from your frontend.
-    // Instead, you would deploy your contract on your backend and reference it by id.
-    // Given the simplicity of the starter contract, we are deploying it on the frontend
-    // for demonstration purposes.
-    const factory = new HelloWorldFactory({
-      defaultSender: activeAddress ?? undefined,
-      algorand,
-    })
-    const deployResult = await factory
-      .deploy({
-        onSchemaBreak: OnSchemaBreak.AppendApp,
-        onUpdate: OnUpdate.AppendApp,
-      })
-      .catch((e: Error) => {
-        enqueueSnackbar(`Error deploying the contract: ${e.message}`, { variant: 'error' })
-        setLoading(false)
-        return undefined
-      })
-
-    if (!deployResult) {
+  // This is the function that runs when the button is clicked
+  const postTask = async () => {
+    if (!activeAddress) {
+      alert("Please connect your wallet first!")
       return
     }
 
-    const { appClient } = deployResult
+    // 1. Setup the connection to the Algorand Network
+    const algodConfig = getAlgodConfigFromViteEnvironment()
+    const algodClient = new algosdk.Algodv2(algodConfig.token, algodConfig.server, algodConfig.port)
 
-    const response = await appClient.send.hello({ args: { name: contractInput } }).catch((e: Error) => {
-      enqueueSnackbar(`Error calling the contract: ${e.message}`, { variant: 'error' })
-      setLoading(false)
-      return undefined
-    })
+    // 2. Setup the "Bridge" to your Smart Contract
+    const marketplaceClient = new AiMarketplaceClient(
+      {
+        resolveBy: 'id',
+        appId: 0, // IMPORTANT: You will update this with your App ID after you deploy
+      },
+      algodClient,
+    )
 
-    if (!response) {
-      return
+    try {
+      // 3. Prepare the 1 ALGO Payment (The Escrow)
+      const suggestedParams = await algodClient.getTransactionParams().do()
+      const payment = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+        from: activeAddress,
+        to: algosdk.getApplicationAddress(marketplaceClient.appId), // Send money to the contract address
+        amount: 1000000, // 1,000,000 microAlgos = 1 ALGO
+        suggestedParams,
+      })
+
+      // 4. Send the command to the blockchain
+      await marketplaceClient.postTask({ payment }, { signer })
+
+      alert("Success! 1 ALGO is now locked in the Smart Contract. The AI Agent is being notified.")
+    } catch (e) {
+      console.error("Payment failed", e)
+      alert("Transaction failed. Check the console for details.")
     }
-
-    enqueueSnackbar(`Response from the contract: ${response.return}`, { variant: 'success' })
-    setLoading(false)
   }
 
+  // This is what the user actually SEES on the screen
   return (
-    <dialog id="appcalls_modal" className={`modal ${openModal ? 'modal-open' : ''} bg-slate-200`}>
-      <form method="dialog" className="modal-box">
-        <h3 className="font-bold text-lg">Say hello to your Algorand smart contract</h3>
-        <br />
-        <input
-          type="text"
-          placeholder="Provide input to hello function"
-          className="input input-bordered w-full"
-          value={contractInput}
-          onChange={(e) => {
-            setContractInput(e.target.value)
-          }}
-        />
-        <div className="modal-action ">
-          <button className="btn" onClick={() => setModalState(!openModal)}>
-            Close
-          </button>
-          <button className={`btn`} onClick={sendAppCall}>
-            {loading ? <span className="loading loading-spinner" /> : 'Send application call'}
-          </button>
-        </div>
-      </form>
-    </dialog>
+    <div className="flex flex-col items-center gap-4 p-6 border rounded-lg bg-slate-800">
+      <h2 className="text-xl font-bold">AI Agent Marketplace</h2>
+      <p>Click below to lock 1 ALGO and request an AI Analysis.</p>
+
+      <button
+        className="px-6 py-2 font-bold text-white bg-blue-600 rounded-full hover:bg-blue-700"
+        onClick={postTask}
+      >
+        Hire AI Agent (1 ALGO)
+      </button>
+    </div>
   )
 }
 
