@@ -1,0 +1,575 @@
+{
+  "version": 3,
+  "sources": [
+    "../../hello_world/contract.py"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;AAKQ;AAAkB;AAAlB;AAHR;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;;;;;;;;;;AAAA;;;AAAA;;;;;;AAAA;;;;;;;;;AAKK;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAMU;AAAA;;AAAoB;;AAApB;AAAP;AACO;;AAAkB;AAAlB;AAAP;AACA;AAAA;AAAA;AAAA;AAAmB;AAAnB;AAAA;AAAA;AAAA;AARH;AAAA;AAUA;;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAMG;AAEW;;;;;AAFX;;;AAGQ;;;AAHR;AANH;AAAA",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "algopy.arc4.ARC4Contract.approval_program",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 1 0 1000000"
+    },
+    "8": {
+      "op": "bytecblock \"task_count\""
+    },
+    "21": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "23": {
+      "op": "bnz main_after_if_else@2",
+      "stack_out": []
+    },
+    "26": {
+      "op": "bytec_0 // \"task_count\"",
+      "defined_out": [
+        "\"task_count\""
+      ],
+      "stack_out": [
+        "\"task_count\""
+      ]
+    },
+    "27": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "\"task_count\"",
+        "0"
+      ],
+      "stack_out": [
+        "\"task_count\"",
+        "0"
+      ]
+    },
+    "28": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "29": {
+      "block": "main_after_if_else@2",
+      "stack_in": [],
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "31": {
+      "op": "bz main___algopy_default_create@11",
+      "stack_out": []
+    },
+    "34": {
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "36": {
+      "op": "!",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "37": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "38": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "40": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "41": {
+      "op": "pushbytess 0xda2fb313 0xa89cf79c // method \"post_task(pay)void\", method \"claim_reward(address)void\"",
+      "defined_out": [
+        "Method(claim_reward(address)void)",
+        "Method(post_task(pay)void)"
+      ],
+      "stack_out": [
+        "Method(post_task(pay)void)",
+        "Method(claim_reward(address)void)"
+      ]
+    },
+    "53": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(claim_reward(address)void)",
+        "Method(post_task(pay)void)",
+        "tmp%6#0"
+      ],
+      "stack_out": [
+        "Method(post_task(pay)void)",
+        "Method(claim_reward(address)void)",
+        "tmp%6#0"
+      ]
+    },
+    "56": {
+      "op": "match post_task claim_reward",
+      "stack_out": []
+    },
+    "62": {
+      "op": "err"
+    },
+    "63": {
+      "block": "main___algopy_default_create@11",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "65": {
+      "op": "!",
+      "defined_out": [
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0"
+      ]
+    },
+    "66": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%8#0",
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%8#0",
+        "tmp%9#0"
+      ]
+    },
+    "68": {
+      "op": "!",
+      "defined_out": [
+        "tmp%10#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0",
+        "tmp%10#0"
+      ]
+    },
+    "69": {
+      "op": "&&",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "70": {
+      "op": "return",
+      "defined_out": [],
+      "stack_out": []
+    },
+    "71": {
+      "subroutine": "smart_contracts.hello_world.contract.AiMarketplace.post_task[routing]",
+      "params": {},
+      "block": "post_task",
+      "stack_in": [],
+      "op": "txn GroupIndex",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "73": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1",
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "1"
+      ]
+    },
+    "74": {
+      "op": "-",
+      "defined_out": [
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0"
+      ]
+    },
+    "75": {
+      "op": "dup",
+      "defined_out": [
+        "payment#0",
+        "payment#0 (copy)"
+      ],
+      "stack_out": [
+        "payment#0",
+        "payment#0 (copy)"
+      ]
+    },
+    "76": {
+      "op": "gtxns TypeEnum",
+      "defined_out": [
+        "gtxn_type%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "gtxn_type%0#0"
+      ]
+    },
+    "78": {
+      "op": "intc_0 // pay",
+      "defined_out": [
+        "gtxn_type%0#0",
+        "pay",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "gtxn_type%0#0",
+        "pay"
+      ]
+    },
+    "79": {
+      "op": "==",
+      "defined_out": [
+        "gtxn_type_matches%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "gtxn_type_matches%0#0"
+      ]
+    },
+    "80": {
+      "error": "transaction type is pay",
+      "op": "assert // transaction type is pay",
+      "stack_out": [
+        "payment#0"
+      ]
+    },
+    "81": {
+      "op": "dup",
+      "stack_out": [
+        "payment#0",
+        "payment#0 (copy)"
+      ]
+    },
+    "82": {
+      "op": "gtxns Receiver",
+      "defined_out": [
+        "payment#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "payment#0",
+        "tmp%0#1"
+      ]
+    },
+    "84": {
+      "op": "global CurrentApplicationAddress",
+      "defined_out": [
+        "payment#0",
+        "tmp%0#1",
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "tmp%0#1",
+        "tmp%1#0"
+      ]
+    },
+    "86": {
+      "op": "==",
+      "defined_out": [
+        "payment#0",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "tmp%2#0"
+      ]
+    },
+    "87": {
+      "op": "assert",
+      "stack_out": [
+        "payment#0"
+      ]
+    },
+    "88": {
+      "op": "gtxns Amount",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "90": {
+      "op": "intc_2 // 1000000",
+      "defined_out": [
+        "1000000",
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0",
+        "1000000"
+      ]
+    },
+    "91": {
+      "op": ">=",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "92": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "93": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "94": {
+      "op": "bytec_0 // \"task_count\"",
+      "defined_out": [
+        "\"task_count\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"task_count\""
+      ]
+    },
+    "95": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
+      ],
+      "stack_out": [
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "96": {
+      "error": "check self.task_count exists",
+      "op": "assert // check self.task_count exists",
+      "stack_out": [
+        "maybe_value%0#0"
+      ]
+    },
+    "97": {
+      "op": "intc_0 // 1",
+      "stack_out": [
+        "maybe_value%0#0",
+        "1"
+      ]
+    },
+    "98": {
+      "op": "+",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "99": {
+      "op": "bytec_0 // \"task_count\"",
+      "stack_out": [
+        "tmp%5#0",
+        "\"task_count\""
+      ]
+    },
+    "100": {
+      "op": "swap",
+      "stack_out": [
+        "\"task_count\"",
+        "tmp%5#0"
+      ]
+    },
+    "101": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "102": {
+      "op": "intc_0 // 1",
+      "stack_out": [
+        "1"
+      ]
+    },
+    "103": {
+      "op": "return",
+      "stack_out": []
+    },
+    "104": {
+      "subroutine": "smart_contracts.hello_world.contract.AiMarketplace.claim_reward[routing]",
+      "params": {},
+      "block": "claim_reward",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "agent#0"
+      ],
+      "stack_out": [
+        "agent#0"
+      ]
+    },
+    "107": {
+      "op": "dup",
+      "defined_out": [
+        "agent#0",
+        "agent#0 (copy)"
+      ],
+      "stack_out": [
+        "agent#0",
+        "agent#0 (copy)"
+      ]
+    },
+    "108": {
+      "op": "len",
+      "defined_out": [
+        "agent#0",
+        "len%0#0"
+      ],
+      "stack_out": [
+        "agent#0",
+        "len%0#0"
+      ]
+    },
+    "109": {
+      "op": "pushint 32",
+      "defined_out": [
+        "32",
+        "agent#0",
+        "len%0#0"
+      ],
+      "stack_out": [
+        "agent#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "111": {
+      "op": "==",
+      "defined_out": [
+        "agent#0",
+        "eq%0#0"
+      ],
+      "stack_out": [
+        "agent#0",
+        "eq%0#0"
+      ]
+    },
+    "112": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "agent#0"
+      ]
+    },
+    "113": {
+      "op": "itxn_begin"
+    },
+    "114": {
+      "op": "intc_2 // 1000000",
+      "defined_out": [
+        "1000000",
+        "agent#0"
+      ],
+      "stack_out": [
+        "agent#0",
+        "1000000"
+      ]
+    },
+    "115": {
+      "op": "itxn_field Amount",
+      "stack_out": [
+        "agent#0"
+      ]
+    },
+    "117": {
+      "op": "itxn_field Receiver",
+      "stack_out": []
+    },
+    "119": {
+      "op": "intc_0 // pay",
+      "defined_out": [
+        "pay"
+      ],
+      "stack_out": [
+        "pay"
+      ]
+    },
+    "120": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": []
+    },
+    "122": {
+      "op": "intc_1 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "123": {
+      "op": "itxn_field Fee",
+      "stack_out": []
+    },
+    "125": {
+      "op": "itxn_submit"
+    },
+    "126": {
+      "op": "intc_0 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "127": {
+      "op": "return",
+      "stack_out": []
+    }
+  }
+}

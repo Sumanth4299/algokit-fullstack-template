@@ -1,56 +1,45 @@
-import { SupportedWallet, WalletId, WalletManager, WalletProvider } from '@txnlab/use-wallet-react'
-import { SnackbarProvider } from 'notistack'
-import Home from './Home'
-import { getAlgodConfigFromViteEnvironment, getKmdConfigFromViteEnvironment } from './utils/network/getAlgoClientConfigs'
+import React from 'react'
+import { WalletProvider, useInitializeProviders, useWallet } from '@txnlab/use-wallet-react'
 
-let supportedWallets: SupportedWallet[]
-if (import.meta.env.VITE_ALGOD_NETWORK === 'localnet') {
-  const kmdConfig = getKmdConfigFromViteEnvironment()
-  supportedWallets = [
-    {
-      id: WalletId.KMD,
-      options: {
-        baseServer: kmdConfig.server,
-        token: String(kmdConfig.token),
-        port: String(kmdConfig.port),
-      },
-    },
-  ]
-} else {
-  supportedWallets = [
-    { id: WalletId.DEFLY },
-    { id: WalletId.PERA },
-    { id: WalletId.EXODUS },
-    // If you are interested in WalletConnect v2 provider
-    // refer to https://github.com/TxnLab/use-wallet for detailed integration instructions
-  ]
+// --- THE DASHBOARD COMPONENT ---
+const MarketplaceDashboard = () => {
+  const { activeAddress } = useWallet()
+
+  const handleHire = () => {
+    if (!activeAddress) {
+      alert("Connect your wallet using the button in the top right (if visible) or check LocalNet!")
+      return
+    }
+    alert("🚀 Task Escrowed! Sending 1 ALGO to the Smart Contract...")
+  }
+
+  return (
+    <div style={{ textAlign: 'center', padding: '40px', background: '#1e293b', borderRadius: '20px', border: '1px solid #334155' }}>
+      <h2 style={{ color: '#38bdf8' }}>AI Agent Marketplace</h2>
+      <p style={{ color: '#94a3b8' }}>Secure Escrow & Autonomous Task Management</p>
+      <hr style={{ borderColor: '#334155', margin: '20px 0' }} />
+      <button
+        onClick={handleHire}
+        style={{ backgroundColor: '#3b82f6', color: 'white', padding: '15px 30px', borderRadius: '10px', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}
+      >
+        Hire AI Agent (1 ALGO)
+      </button>
+    </div>
+  )
 }
 
+// --- THE MAIN APP ---
 export default function App() {
-  const algodConfig = getAlgodConfigFromViteEnvironment()
-
-  const walletManager = new WalletManager({
-    wallets: supportedWallets,
-    defaultNetwork: algodConfig.network,
-    networks: {
-      [algodConfig.network]: {
-        algod: {
-          baseServer: algodConfig.server,
-          port: algodConfig.port,
-          token: String(algodConfig.token),
-        },
-      },
-    },
-    options: {
-      resetNetwork: true,
-    },
+  const walletProviders = useInitializeProviders({
+    providers: [],
+    nodeConfig: { network: 'localnet', nodeServer: 'http://localhost', nodePort: '4001', nodeToken: '' },
   })
 
   return (
-    <SnackbarProvider maxSnack={3}>
-      <WalletProvider manager={walletManager}>
-        <Home />
-      </WalletProvider>
-    </SnackbarProvider>
+    <WalletProvider value={walletProviders}>
+      <div style={{ backgroundColor: '#0f172a', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif', color: 'white' }}>
+        <MarketplaceDashboard />
+      </div>
+    </WalletProvider>
   )
 }

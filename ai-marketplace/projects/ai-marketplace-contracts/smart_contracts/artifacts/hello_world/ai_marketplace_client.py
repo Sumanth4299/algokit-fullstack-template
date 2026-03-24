@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "string", "name": "name"}], "name": "hello", "returns": {"type": "string"}, "events": [], "readonly": false, "recommendations": {}}], "name": "HelloWorld", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CzEbQQAYgAQCvs4RNhoAjgEAAQAxGRQxGBBEQgAIMRkUMRgUEEM2GgFJgQBZgQIISwEVEkRXAgCAB0hlbGxvLCBMUEkVFlcGAkxQgAQVH3x1TFCwgQFD", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBIZWxsb1dvcmxkKEFSQzRDb250cmFjdCk6CiAgICB0eG4gTnVtQXBwQXJncwogICAgYnogbWFpbl9fX2FsZ29weV9kZWZhdWx0X2NyZWF0ZUA1CiAgICBwdXNoYnl0ZXMgMHgwMmJlY2UxMSAvLyBtZXRob2QgImhlbGxvKHN0cmluZylzdHJpbmciCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtYWluX2hlbGxvX3JvdXRlQDMKICAgIGVycgoKbWFpbl9oZWxsb19yb3V0ZUAzOgogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjYKICAgIC8vIEBhYmltZXRob2QoKQogICAgdHhuIE9uQ29tcGxldGlvbgogICAgIQogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgICYmCiAgICBhc3NlcnQKICAgIGIgaGVsbG8KCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVANToKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICAmJgogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmhlbGxvX3dvcmxkLmNvbnRyYWN0LkhlbGxvV29ybGQuaGVsbG9bcm91dGluZ10oKSAtPiB2b2lkOgpoZWxsbzoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo2CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGR1cAogICAgcHVzaGludCAwCiAgICBleHRyYWN0X3VpbnQxNiAvLyBvbiBlcnJvcjogaW52YWxpZCBhcnJheSBsZW5ndGggaGVhZGVyCiAgICBwdXNoaW50IDIKICAgICsKICAgIGRpZyAxCiAgICBsZW4KICAgID09CiAgICBhc3NlcnQgLy8gaW52YWxpZCBudW1iZXIgb2YgYnl0ZXMgZm9yIGFyYzQuZHluYW1pY19hcnJheTxhcmM0LnVpbnQ4PgogICAgZXh0cmFjdCAyIDAKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo4CiAgICAvLyByZXR1cm4gIkhlbGxvLCAiICsgbmFtZQogICAgcHVzaGJ5dGVzICJIZWxsbywgIgogICAgc3dhcAogICAgY29uY2F0CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6NgogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBkdXAKICAgIGxlbgogICAgaXRvYgogICAgZXh0cmFjdCA2IDIKICAgIHN3YXAKICAgIGNvbmNhdAogICAgcHVzaGJ5dGVzIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBwdXNoaW50IDEKICAgIHJldHVybgo=", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [44], "errorMessage": "invalid array length header"}, {"pc": [52], "errorMessage": "invalid number of bytes for arc4.dynamic_array<arc4.uint8>"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
+_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "pay", "name": "payment"}], "name": "post_task", "returns": {"type": "void"}, "desc": "User calls this to request a task.\nThey must send 1 ALGO (1,000,000 microAlgos) to the contract.", "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "address", "name": "agent"}], "name": "claim_reward", "returns": {"type": "void"}, "desc": "The AI Agent calls this to get paid 1 ALGO from the escrow.", "events": [], "readonly": false, "recommendations": {}}], "name": "AiMarketplace", "state": {"keys": {"box": {}, "global": {"task_count": {"key": "dGFza19jb3VudA==", "keyType": "AVMString", "valueType": "AVMUint64"}}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 1}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CyADAQDAhD0mAQp0YXNrX2NvdW50MRhAAAMoI2cxG0EAHTEZFEQxGESCAgTaL7MTBKic95w2GgCOAgAJACoAMRkUMRgUEEMxFiIJSTgQIhJESTgHMgoSRDgIJA9EIyhlRCIIKExnIkM2GgFJFYEgEkSxJLIIsgcishAjsgGzIkM=", "clear": "C4EBQw=="}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAxIDAgMTAwMDAwMAogICAgYnl0ZWNibG9jayAidGFza19jb3VudCIKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo1LTYKICAgIC8vICMgU3RhdGU6IFRyYWNrIHRvdGFsIHRhc2tzIHByb2Nlc3NlZCBieSB0aGUgbWFya2V0cGxhY2UKICAgIC8vIHNlbGYudGFza19jb3VudCA9IFVJbnQ2NCgwKQogICAgYnl0ZWNfMCAvLyAidGFza19jb3VudCIKICAgIGludGNfMSAvLyAwCiAgICBhcHBfZ2xvYmFsX3B1dAoKbWFpbl9hZnRlcl9pZl9lbHNlQDI6CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6MwogICAgLy8gY2xhc3MgQWlNYXJrZXRwbGFjZShBUkM0Q29udHJhY3QpOgogICAgdHhuIE51bUFwcEFyZ3MKICAgIGJ6IG1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTEKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydAogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGFzc2VydAogICAgcHVzaGJ5dGVzcyAweGRhMmZiMzEzIDB4YTg5Y2Y3OWMgLy8gbWV0aG9kICJwb3N0X3Rhc2socGF5KXZvaWQiLCBtZXRob2QgImNsYWltX3Jld2FyZChhZGRyZXNzKXZvaWQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBwb3N0X3Rhc2sgY2xhaW1fcmV3YXJkCiAgICBlcnIKCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTE6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgJiYKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5oZWxsb193b3JsZC5jb250cmFjdC5BaU1hcmtldHBsYWNlLnBvc3RfdGFza1tyb3V0aW5nXSgpIC0+IHZvaWQ6CnBvc3RfdGFzazoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo4CiAgICAvLyBAYXJjNC5hYmltZXRob2QKICAgIHR4biBHcm91cEluZGV4CiAgICBpbnRjXzAgLy8gMQogICAgLQogICAgZHVwCiAgICBndHhucyBUeXBlRW51bQogICAgaW50Y18wIC8vIHBheQogICAgPT0KICAgIGFzc2VydCAvLyB0cmFuc2FjdGlvbiB0eXBlIGlzIHBheQogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjE0CiAgICAvLyBhc3NlcnQgcGF5bWVudC5yZWNlaXZlciA9PSBHbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzCiAgICBkdXAKICAgIGd0eG5zIFJlY2VpdmVyCiAgICBnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwogICAgPT0KICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjE1CiAgICAvLyBhc3NlcnQgcGF5bWVudC5hbW91bnQgPj0gMV8wMDBfMDAwCiAgICBndHhucyBBbW91bnQKICAgIGludGNfMiAvLyAxMDAwMDAwCiAgICA+PQogICAgYXNzZXJ0CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6MTYKICAgIC8vIHNlbGYudGFza19jb3VudCArPSAxCiAgICBpbnRjXzEgLy8gMAogICAgYnl0ZWNfMCAvLyAidGFza19jb3VudCIKICAgIGFwcF9nbG9iYWxfZ2V0X2V4CiAgICBhc3NlcnQgLy8gY2hlY2sgc2VsZi50YXNrX2NvdW50IGV4aXN0cwogICAgaW50Y18wIC8vIDEKICAgICsKICAgIGJ5dGVjXzAgLy8gInRhc2tfY291bnQiCiAgICBzd2FwCiAgICBhcHBfZ2xvYmFsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjgKICAgIC8vIEBhcmM0LmFiaW1ldGhvZAogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5oZWxsb193b3JsZC5jb250cmFjdC5BaU1hcmtldHBsYWNlLmNsYWltX3Jld2FyZFtyb3V0aW5nXSgpIC0+IHZvaWQ6CmNsYWltX3Jld2FyZDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weToxOAogICAgLy8gQGFyYzQuYWJpbWV0aG9kCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgcHVzaGludCAzMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC5zdGF0aWNfYXJyYXk8YXJjNC51aW50OCwgMzI+CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6MjMtMjgKICAgIC8vICMgQ29udHJhY3Qgc2VuZHMgMSBBTEdPIHRvIHRoZSBhZ2VudCdzIHdhbGxldAogICAgLy8gaXR4bi5QYXltZW50KAogICAgLy8gICAgIHJlY2VpdmVyPWFnZW50LAogICAgLy8gICAgIGFtb3VudD0xXzAwMF8wMDAsCiAgICAvLyAgICAgZmVlPTAKICAgIC8vICkuc3VibWl0KCkKICAgIGl0eG5fYmVnaW4KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weToyNgogICAgLy8gYW1vdW50PTFfMDAwXzAwMCwKICAgIGludGNfMiAvLyAxMDAwMDAwCiAgICBpdHhuX2ZpZWxkIEFtb3VudAogICAgaXR4bl9maWVsZCBSZWNlaXZlcgogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjIzLTI0CiAgICAvLyAjIENvbnRyYWN0IHNlbmRzIDEgQUxHTyB0byB0aGUgYWdlbnQncyB3YWxsZXQKICAgIC8vIGl0eG4uUGF5bWVudCgKICAgIGludGNfMCAvLyBwYXkKICAgIGl0eG5fZmllbGQgVHlwZUVudW0KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weToyNwogICAgLy8gZmVlPTAKICAgIGludGNfMSAvLyAwCiAgICBpdHhuX2ZpZWxkIEZlZQogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjIzLTI4CiAgICAvLyAjIENvbnRyYWN0IHNlbmRzIDEgQUxHTyB0byB0aGUgYWdlbnQncyB3YWxsZXQKICAgIC8vIGl0eG4uUGF5bWVudCgKICAgIC8vICAgICByZWNlaXZlcj1hZ2VudCwKICAgIC8vICAgICBhbW91bnQ9MV8wMDBfMDAwLAogICAgLy8gICAgIGZlZT0wCiAgICAvLyApLnN1Ym1pdCgpCiAgICBpdHhuX3N1Ym1pdAogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjE4CiAgICAvLyBAYXJjNC5hYmltZXRob2QKICAgIGludGNfMCAvLyAxCiAgICByZXR1cm4K", "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [96], "errorMessage": "check self.task_count exists"}, {"pc": [112], "errorMessage": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>"}, {"pc": [80], "errorMessage": "transaction type is pay"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -65,29 +65,51 @@ def _init_dataclass(cls: type, data: dict) -> object:
     return cls(**field_values)
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class HelloArgs:
-    """Dataclass for hello arguments"""
-    name: str
+class PostTaskArgs:
+    """Dataclass for post_task arguments"""
+    payment: algokit_utils.AppMethodCallTransactionArgument
 
     @property
     def abi_method_signature(self) -> str:
-        return "hello(string)string"
+        return "post_task(pay)void"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class ClaimRewardArgs:
+    """Dataclass for claim_reward arguments"""
+    agent: str
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "claim_reward(address)void"
 
 
-class HelloWorldParams:
+class AiMarketplaceParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def hello(
+    def post_task(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | PostTaskArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.AppCallMethodCallParams:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "hello(string)string",
+            "method": "post_task(pay)void",
+            "args": method_args,
+        }))
+
+    def claim_reward(
+        self,
+        args: tuple[str] | ClaimRewardArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "claim_reward(address)void",
             "args": method_args,
         }))
 
@@ -102,20 +124,33 @@ class HelloWorldParams:
         )
 
 
-class HelloWorldCreateTransactionParams:
+class AiMarketplaceCreateTransactionParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def hello(
+    def post_task(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | PostTaskArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.BuiltTransactions:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "hello(string)string",
+            "method": "post_task(pay)void",
+            "args": method_args,
+        }))
+
+    def claim_reward(
+        self,
+        args: tuple[str] | ClaimRewardArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "claim_reward(address)void",
             "args": method_args,
         }))
 
@@ -130,25 +165,41 @@ class HelloWorldCreateTransactionParams:
         )
 
 
-class HelloWorldSend:
+class AiMarketplaceSend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def hello(
+    def post_task(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | PostTaskArgs,
         params: algokit_utils.CommonAppCallParams | None = None,
         send_params: algokit_utils.SendParams | None = None
-    ) -> algokit_utils.SendAppTransactionResult[str]:
+    ) -> algokit_utils.SendAppTransactionResult[None]:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "hello(string)string",
+            "method": "post_task(pay)void",
             "args": method_args,
         }), send_params=send_params)
         parsed_response = response
-        return typing.cast(algokit_utils.SendAppTransactionResult[str], parsed_response)
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+
+    def claim_reward(
+        self,
+        args: tuple[str] | ClaimRewardArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[None]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "claim_reward(address)void",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
 
     def clear_state(
         self,
@@ -161,14 +212,56 @@ class HelloWorldSend:
         )
 
 
-class HelloWorldState:
-    """Methods to access state for the current HelloWorld app"""
+class GlobalStateValue(typing.TypedDict):
+    """Shape of global_state state key values"""
+    task_count: int
+
+class AiMarketplaceState:
+    """Methods to access state for the current AiMarketplace app"""
 
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-class HelloWorldClient:
-    """Client for interacting with HelloWorld smart contract"""
+    @property
+    def global_state(
+        self
+    ) -> "_GlobalState":
+            """Methods to access global_state for the current app"""
+            return _GlobalState(self.app_client)
+
+class _GlobalState:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+        
+        # Pre-generated mapping of value types to their struct classes
+        self._struct_classes: dict[str, typing.Type[typing.Any]] = {}
+
+    def get_all(self) -> GlobalStateValue:
+        """Get all current keyed values from global_state state"""
+        result = self.app_client.state.global_state.get_all()
+        if not result:
+            return typing.cast(GlobalStateValue, {})
+
+        converted = {}
+        for key, value in result.items():
+            key_info = self.app_client.app_spec.state.keys.global_state.get(key)
+            struct_class = self._struct_classes.get(key_info.value_type) if key_info else None
+            converted[key] = (
+                _init_dataclass(struct_class, value) if struct_class and isinstance(value, dict)
+                else value
+            )
+        return typing.cast(GlobalStateValue, converted)
+
+    @property
+    def task_count(self) -> int:
+        """Get the current value of the task_count key in global_state state"""
+        value = self.app_client.state.global_state.get_value("task_count")
+        if isinstance(value, dict) and "AVMUint64" in self._struct_classes:
+            return _init_dataclass(self._struct_classes["AVMUint64"], value)  # type: ignore
+        return typing.cast(int, value)
+
+class AiMarketplaceClient:
+    """Client for interacting with AiMarketplace smart contract"""
 
     @typing.overload
     def __init__(self, app_client: algokit_utils.AppClient) -> None: ...
@@ -216,10 +309,10 @@ class HelloWorldClient:
         else:
             raise ValueError("Either app_client or algorand and app_id must be provided")
     
-        self.params = HelloWorldParams(self.app_client)
-        self.create_transaction = HelloWorldCreateTransactionParams(self.app_client)
-        self.send = HelloWorldSend(self.app_client)
-        self.state = HelloWorldState(self.app_client)
+        self.params = AiMarketplaceParams(self.app_client)
+        self.create_transaction = AiMarketplaceCreateTransactionParams(self.app_client)
+        self.send = AiMarketplaceSend(self.app_client)
+        self.state = AiMarketplaceState(self.app_client)
 
     @staticmethod
     def from_creator_and_name(
@@ -232,8 +325,8 @@ class HelloWorldClient:
         clear_source_map: SourceMap | None = None,
         ignore_cache: bool | None = None,
         app_lookup_cache: algokit_utils.ApplicationLookup | None = None,
-    ) -> "HelloWorldClient":
-        return HelloWorldClient(
+    ) -> "AiMarketplaceClient":
+        return AiMarketplaceClient(
             algokit_utils.AppClient.from_creator_and_name(
                 creator_address=creator_address,
                 app_name=app_name,
@@ -256,8 +349,8 @@ class HelloWorldClient:
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> "HelloWorldClient":
-        return HelloWorldClient(
+    ) -> "AiMarketplaceClient":
+        return AiMarketplaceClient(
             algokit_utils.AppClient.from_network(
                 app_spec=APP_SPEC,
                 algorand=algorand,
@@ -296,8 +389,8 @@ class HelloWorldClient:
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> "HelloWorldClient":
-        return HelloWorldClient(
+    ) -> "AiMarketplaceClient":
+        return AiMarketplaceClient(
             self.app_client.clone(
                 app_name=app_name,
                 default_sender=default_sender,
@@ -307,15 +400,21 @@ class HelloWorldClient:
             )
         )
 
-    def new_group(self) -> "HelloWorldComposer":
-        return HelloWorldComposer(self)
+    def new_group(self) -> "AiMarketplaceComposer":
+        return AiMarketplaceComposer(self)
 
     @typing.overload
     def decode_return_value(
         self,
-        method: typing.Literal["hello(string)string"],
+        method: typing.Literal["post_task(pay)void"],
         return_value: algokit_utils.ABIReturn | None
-    ) -> str | None: ...
+    ) -> None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["claim_reward(address)void"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> None: ...
     @typing.overload
     def decode_return_value(
         self,
@@ -327,7 +426,7 @@ class HelloWorldClient:
         self,
         method: str,
         return_value: algokit_utils.ABIReturn | None
-    ) -> algokit_utils.ABIValue | algokit_utils.ABIStruct | None | str:
+    ) -> algokit_utils.ABIValue | algokit_utils.ABIStruct | None:
         """Decode ABI return value for the given method."""
         if return_value is None:
             return None
@@ -347,15 +446,15 @@ class HelloWorldClient:
 
 
 @dataclasses.dataclass(frozen=True)
-class HelloWorldBareCallCreateParams(algokit_utils.AppClientBareCallCreateParams):
-    """Parameters for creating HelloWorld contract with bare calls"""
+class AiMarketplaceBareCallCreateParams(algokit_utils.AppClientBareCallCreateParams):
+    """Parameters for creating AiMarketplace contract with bare calls"""
     on_complete: typing.Literal[OnComplete.NoOpOC] | None = None
 
     def to_algokit_utils_params(self) -> algokit_utils.AppClientBareCallCreateParams:
         return algokit_utils.AppClientBareCallCreateParams(**self.__dict__)
 
-class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCallCreateParams, None, None]):
-    """Factory for deploying and managing HelloWorldClient smart contracts"""
+class AiMarketplaceFactory(algokit_utils.TypedAppFactoryProtocol[AiMarketplaceBareCallCreateParams, None, None]):
+    """Factory for deploying and managing AiMarketplaceClient smart contracts"""
 
     def __init__(
         self,
@@ -378,9 +477,9 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
                 compilation_params=compilation_params,
             )
         )
-        self.params = HelloWorldFactoryParams(self.app_factory)
-        self.create_transaction = HelloWorldFactoryCreateTransaction(self.app_factory)
-        self.send = HelloWorldFactorySend(self.app_factory)
+        self.params = AiMarketplaceFactoryParams(self.app_factory)
+        self.create_transaction = AiMarketplaceFactoryCreateTransaction(self.app_factory)
+        self.send = AiMarketplaceFactorySend(self.app_factory)
 
     @property
     def app_name(self) -> str:
@@ -399,7 +498,7 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
         *,
         on_update: algokit_utils.OnUpdate | None = None,
         on_schema_break: algokit_utils.OnSchemaBreak | None = None,
-        create_params: HelloWorldBareCallCreateParams | None = None,
+        create_params: AiMarketplaceBareCallCreateParams | None = None,
         update_params: None = None,
         delete_params: None = None,
         existing_deployments: algokit_utils.ApplicationLookup | None = None,
@@ -407,7 +506,7 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
         app_name: str | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None,
         send_params: algokit_utils.SendParams | None = None,
-    ) -> tuple[HelloWorldClient, algokit_utils.AppFactoryDeployResult]:
+    ) -> tuple[AiMarketplaceClient, algokit_utils.AppFactoryDeployResult]:
         """Deploy the application"""
         deploy_response = self.app_factory.deploy(
             on_update=on_update,
@@ -422,7 +521,7 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
             send_params=send_params,
         )
 
-        return HelloWorldClient(deploy_response[0]), deploy_response[1]
+        return AiMarketplaceClient(deploy_response[0]), deploy_response[1]
 
     def get_app_client_by_creator_and_name(
         self,
@@ -434,9 +533,9 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
         app_lookup_cache: algokit_utils.ApplicationLookup | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> HelloWorldClient:
+    ) -> AiMarketplaceClient:
         """Get an app client by creator address and name"""
-        return HelloWorldClient(
+        return AiMarketplaceClient(
             self.app_factory.get_app_client_by_creator_and_name(
                 creator_address,
                 app_name,
@@ -457,9 +556,9 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
         default_signer: TransactionSigner | None = None,
         approval_source_map: SourceMap | None = None,
         clear_source_map: SourceMap | None = None,
-    ) -> HelloWorldClient:
+    ) -> AiMarketplaceClient:
         """Get an app client by app ID"""
-        return HelloWorldClient(
+        return AiMarketplaceClient(
             self.app_factory.get_app_client_by_id(
                 app_id,
                 app_name,
@@ -471,17 +570,17 @@ class HelloWorldFactory(algokit_utils.TypedAppFactoryProtocol[HelloWorldBareCall
         )
 
 
-class HelloWorldFactoryParams:
-    """Parameters for creating transactions for HelloWorld contract"""
+class AiMarketplaceFactoryParams:
+    """Parameters for creating transactions for AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = HelloWorldFactoryCreateParams(app_factory)
-        self.update = HelloWorldFactoryUpdateParams(app_factory)
-        self.delete = HelloWorldFactoryDeleteParams(app_factory)
+        self.create = AiMarketplaceFactoryCreateParams(app_factory)
+        self.update = AiMarketplaceFactoryUpdateParams(app_factory)
+        self.delete = AiMarketplaceFactoryDeleteParams(app_factory)
 
-class HelloWorldFactoryCreateParams:
-    """Parameters for 'create' operations of HelloWorld contract"""
+class AiMarketplaceFactoryCreateParams:
+    """Parameters for 'create' operations of AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -498,28 +597,48 @@ class HelloWorldFactoryCreateParams:
             algokit_utils.AppFactoryCreateParams(**dataclasses.asdict(params)),
             compilation_params=compilation_params)
 
-    def hello(
+    def post_task(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | PostTaskArgs,
         *,
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the hello(string)string ABI method"""
+        """Creates a new instance using the post_task(pay)void ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "hello(string)string",
+                "method": "post_task(pay)void",
                 "args": _parse_abi_args(args),
                 }
             ),
             compilation_params=compilation_params
         )
 
-class HelloWorldFactoryUpdateParams:
-    """Parameters for 'update' operations of HelloWorld contract"""
+    def claim_reward(
+        self,
+        args: tuple[str] | ClaimRewardArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the claim_reward(address)void ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "claim_reward(address)void",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+class AiMarketplaceFactoryUpdateParams:
+    """Parameters for 'update' operations of AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -536,8 +655,8 @@ class HelloWorldFactoryUpdateParams:
             algokit_utils.AppClientBareCallParams(**dataclasses.asdict(params)),
             )
 
-class HelloWorldFactoryDeleteParams:
-    """Parameters for 'delete' operations of HelloWorld contract"""
+class AiMarketplaceFactoryDeleteParams:
+    """Parameters for 'delete' operations of AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -555,16 +674,16 @@ class HelloWorldFactoryDeleteParams:
             )
 
 
-class HelloWorldFactoryCreateTransaction:
-    """Create transactions for HelloWorld contract"""
+class AiMarketplaceFactoryCreateTransaction:
+    """Create transactions for AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = HelloWorldFactoryCreateTransactionCreate(app_factory)
+        self.create = AiMarketplaceFactoryCreateTransactionCreate(app_factory)
 
 
-class HelloWorldFactoryCreateTransactionCreate:
-    """Create new instances of HelloWorld contract"""
+class AiMarketplaceFactoryCreateTransactionCreate:
+    """Create new instances of AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -580,16 +699,16 @@ class HelloWorldFactoryCreateTransactionCreate:
         )
 
 
-class HelloWorldFactorySend:
-    """Send calls to HelloWorld contract"""
+class AiMarketplaceFactorySend:
+    """Send calls to AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
-        self.create = HelloWorldFactorySendCreate(app_factory)
+        self.create = AiMarketplaceFactorySendCreate(app_factory)
 
 
-class HelloWorldFactorySendCreate:
-    """Send create calls to HelloWorld contract"""
+class AiMarketplaceFactorySendCreate:
+    """Send create calls to AiMarketplace contract"""
 
     def __init__(self, app_factory: algokit_utils.AppFactory):
         self.app_factory = app_factory
@@ -600,7 +719,7 @@ class HelloWorldFactorySendCreate:
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         send_params: algokit_utils.SendParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None,
-    ) -> tuple[HelloWorldClient, algokit_utils.SendAppCreateTransactionResult]:
+    ) -> tuple[AiMarketplaceClient, algokit_utils.SendAppCreateTransactionResult]:
         """Creates a new instance using a bare call"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         result = self.app_factory.send.bare.create(
@@ -608,31 +727,49 @@ class HelloWorldFactorySendCreate:
             send_params=send_params,
             compilation_params=compilation_params
         )
-        return HelloWorldClient(result[0]), result[1]
+        return AiMarketplaceClient(result[0]), result[1]
 
 
-class HelloWorldComposer:
-    """Composer for creating transaction groups for HelloWorld contract calls"""
+class AiMarketplaceComposer:
+    """Composer for creating transaction groups for AiMarketplace contract calls"""
 
-    def __init__(self, client: "HelloWorldClient"):
+    def __init__(self, client: "AiMarketplaceClient"):
         self.client = client
         self._composer = client.algorand.new_group()
         self._result_mappers: list[typing.Callable[[algokit_utils.ABIReturn | None], object] | None] = []
 
-    def hello(
+    def post_task(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | PostTaskArgs,
         params: algokit_utils.CommonAppCallParams | None = None
-    ) -> "HelloWorldComposer":
+    ) -> "AiMarketplaceComposer":
         self._composer.add_app_call_method_call(
-            self.client.params.hello(
+            self.client.params.post_task(
                 args=args,
                 params=params,
             )
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "hello(string)string", v
+                "post_task(pay)void", v
+            )
+        )
+        return self
+
+    def claim_reward(
+        self,
+        args: tuple[str] | ClaimRewardArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "AiMarketplaceComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.claim_reward(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "claim_reward(address)void", v
             )
         )
         return self
@@ -642,7 +779,7 @@ class HelloWorldComposer:
         *,
         args: list[bytes] | None = None,
         params: algokit_utils.CommonAppCallParams | None = None,
-    ) -> "HelloWorldComposer":
+    ) -> "AiMarketplaceComposer":
         params=params or algokit_utils.CommonAppCallParams()
         self._composer.add_app_call(
             self.client.params.clear_state(
@@ -658,7 +795,7 @@ class HelloWorldComposer:
     
     def add_transaction(
         self, txn: Transaction, signer: TransactionSigner | None = None
-    ) -> "HelloWorldComposer":
+    ) -> "AiMarketplaceComposer":
         self._composer.add_transaction(txn, signer)
         return self
     

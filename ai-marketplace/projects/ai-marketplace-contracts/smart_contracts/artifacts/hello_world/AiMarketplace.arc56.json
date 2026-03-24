@@ -1,0 +1,136 @@
+{
+    "name": "AiMarketplace",
+    "structs": {},
+    "methods": [
+        {
+            "name": "post_task",
+            "args": [
+                {
+                    "type": "pay",
+                    "name": "payment"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            },
+            "actions": {
+                "create": [],
+                "call": [
+                    "NoOp"
+                ]
+            },
+            "readonly": false,
+            "desc": "User calls this to request a task.\nThey must send 1 ALGO (1,000,000 microAlgos) to the contract.",
+            "events": [],
+            "recommendations": {}
+        },
+        {
+            "name": "claim_reward",
+            "args": [
+                {
+                    "type": "address",
+                    "name": "agent"
+                }
+            ],
+            "returns": {
+                "type": "void"
+            },
+            "actions": {
+                "create": [],
+                "call": [
+                    "NoOp"
+                ]
+            },
+            "readonly": false,
+            "desc": "The AI Agent calls this to get paid 1 ALGO from the escrow.",
+            "events": [],
+            "recommendations": {}
+        }
+    ],
+    "arcs": [
+        22,
+        28
+    ],
+    "networks": {},
+    "state": {
+        "schema": {
+            "global": {
+                "ints": 1,
+                "bytes": 0
+            },
+            "local": {
+                "ints": 0,
+                "bytes": 0
+            }
+        },
+        "keys": {
+            "global": {
+                "task_count": {
+                    "keyType": "AVMString",
+                    "valueType": "AVMUint64",
+                    "key": "dGFza19jb3VudA=="
+                }
+            },
+            "local": {},
+            "box": {}
+        },
+        "maps": {
+            "global": {},
+            "local": {},
+            "box": {}
+        }
+    },
+    "bareActions": {
+        "create": [
+            "NoOp"
+        ],
+        "call": []
+    },
+    "sourceInfo": {
+        "approval": {
+            "sourceInfo": [
+                {
+                    "pc": [
+                        96
+                    ],
+                    "errorMessage": "check self.task_count exists"
+                },
+                {
+                    "pc": [
+                        112
+                    ],
+                    "errorMessage": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>"
+                },
+                {
+                    "pc": [
+                        80
+                    ],
+                    "errorMessage": "transaction type is pay"
+                }
+            ],
+            "pcOffsetMethod": "none"
+        },
+        "clear": {
+            "sourceInfo": [],
+            "pcOffsetMethod": "none"
+        }
+    },
+    "source": {
+        "approval": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIGludGNibG9jayAxIDAgMTAwMDAwMAogICAgYnl0ZWNibG9jayAidGFza19jb3VudCIKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo1LTYKICAgIC8vICMgU3RhdGU6IFRyYWNrIHRvdGFsIHRhc2tzIHByb2Nlc3NlZCBieSB0aGUgbWFya2V0cGxhY2UKICAgIC8vIHNlbGYudGFza19jb3VudCA9IFVJbnQ2NCgwKQogICAgYnl0ZWNfMCAvLyAidGFza19jb3VudCIKICAgIGludGNfMSAvLyAwCiAgICBhcHBfZ2xvYmFsX3B1dAoKbWFpbl9hZnRlcl9pZl9lbHNlQDI6CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6MwogICAgLy8gY2xhc3MgQWlNYXJrZXRwbGFjZShBUkM0Q29udHJhY3QpOgogICAgdHhuIE51bUFwcEFyZ3MKICAgIGJ6IG1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTEKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydAogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGFzc2VydAogICAgcHVzaGJ5dGVzcyAweGRhMmZiMzEzIDB4YTg5Y2Y3OWMgLy8gbWV0aG9kICJwb3N0X3Rhc2socGF5KXZvaWQiLCBtZXRob2QgImNsYWltX3Jld2FyZChhZGRyZXNzKXZvaWQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBwb3N0X3Rhc2sgY2xhaW1fcmV3YXJkCiAgICBlcnIKCm1haW5fX19hbGdvcHlfZGVmYXVsdF9jcmVhdGVAMTE6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgJiYKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5oZWxsb193b3JsZC5jb250cmFjdC5BaU1hcmtldHBsYWNlLnBvc3RfdGFza1tyb3V0aW5nXSgpIC0+IHZvaWQ6CnBvc3RfdGFzazoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weTo4CiAgICAvLyBAYXJjNC5hYmltZXRob2QKICAgIHR4biBHcm91cEluZGV4CiAgICBpbnRjXzAgLy8gMQogICAgLQogICAgZHVwCiAgICBndHhucyBUeXBlRW51bQogICAgaW50Y18wIC8vIHBheQogICAgPT0KICAgIGFzc2VydCAvLyB0cmFuc2FjdGlvbiB0eXBlIGlzIHBheQogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjE0CiAgICAvLyBhc3NlcnQgcGF5bWVudC5yZWNlaXZlciA9PSBHbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzCiAgICBkdXAKICAgIGd0eG5zIFJlY2VpdmVyCiAgICBnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwogICAgPT0KICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjE1CiAgICAvLyBhc3NlcnQgcGF5bWVudC5hbW91bnQgPj0gMV8wMDBfMDAwCiAgICBndHhucyBBbW91bnQKICAgIGludGNfMiAvLyAxMDAwMDAwCiAgICA+PQogICAgYXNzZXJ0CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6MTYKICAgIC8vIHNlbGYudGFza19jb3VudCArPSAxCiAgICBpbnRjXzEgLy8gMAogICAgYnl0ZWNfMCAvLyAidGFza19jb3VudCIKICAgIGFwcF9nbG9iYWxfZ2V0X2V4CiAgICBhc3NlcnQgLy8gY2hlY2sgc2VsZi50YXNrX2NvdW50IGV4aXN0cwogICAgaW50Y18wIC8vIDEKICAgICsKICAgIGJ5dGVjXzAgLy8gInRhc2tfY291bnQiCiAgICBzd2FwCiAgICBhcHBfZ2xvYmFsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjgKICAgIC8vIEBhcmM0LmFiaW1ldGhvZAogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5oZWxsb193b3JsZC5jb250cmFjdC5BaU1hcmtldHBsYWNlLmNsYWltX3Jld2FyZFtyb3V0aW5nXSgpIC0+IHZvaWQ6CmNsYWltX3Jld2FyZDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weToxOAogICAgLy8gQGFyYzQuYWJpbWV0aG9kCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBkdXAKICAgIGxlbgogICAgcHVzaGludCAzMgogICAgPT0KICAgIGFzc2VydCAvLyBpbnZhbGlkIG51bWJlciBvZiBieXRlcyBmb3IgYXJjNC5zdGF0aWNfYXJyYXk8YXJjNC51aW50OCwgMzI+CiAgICAvLyBzbWFydF9jb250cmFjdHMvaGVsbG9fd29ybGQvY29udHJhY3QucHk6MjMtMjgKICAgIC8vICMgQ29udHJhY3Qgc2VuZHMgMSBBTEdPIHRvIHRoZSBhZ2VudCdzIHdhbGxldAogICAgLy8gaXR4bi5QYXltZW50KAogICAgLy8gICAgIHJlY2VpdmVyPWFnZW50LAogICAgLy8gICAgIGFtb3VudD0xXzAwMF8wMDAsCiAgICAvLyAgICAgZmVlPTAKICAgIC8vICkuc3VibWl0KCkKICAgIGl0eG5fYmVnaW4KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weToyNgogICAgLy8gYW1vdW50PTFfMDAwXzAwMCwKICAgIGludGNfMiAvLyAxMDAwMDAwCiAgICBpdHhuX2ZpZWxkIEFtb3VudAogICAgaXR4bl9maWVsZCBSZWNlaXZlcgogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjIzLTI0CiAgICAvLyAjIENvbnRyYWN0IHNlbmRzIDEgQUxHTyB0byB0aGUgYWdlbnQncyB3YWxsZXQKICAgIC8vIGl0eG4uUGF5bWVudCgKICAgIGludGNfMCAvLyBwYXkKICAgIGl0eG5fZmllbGQgVHlwZUVudW0KICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9oZWxsb193b3JsZC9jb250cmFjdC5weToyNwogICAgLy8gZmVlPTAKICAgIGludGNfMSAvLyAwCiAgICBpdHhuX2ZpZWxkIEZlZQogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjIzLTI4CiAgICAvLyAjIENvbnRyYWN0IHNlbmRzIDEgQUxHTyB0byB0aGUgYWdlbnQncyB3YWxsZXQKICAgIC8vIGl0eG4uUGF5bWVudCgKICAgIC8vICAgICByZWNlaXZlcj1hZ2VudCwKICAgIC8vICAgICBhbW91bnQ9MV8wMDBfMDAwLAogICAgLy8gICAgIGZlZT0wCiAgICAvLyApLnN1Ym1pdCgpCiAgICBpdHhuX3N1Ym1pdAogICAgLy8gc21hcnRfY29udHJhY3RzL2hlbGxvX3dvcmxkL2NvbnRyYWN0LnB5OjE4CiAgICAvLyBAYXJjNC5hYmltZXRob2QKICAgIGludGNfMCAvLyAxCiAgICByZXR1cm4K",
+        "clear": "I3ByYWdtYSB2ZXJzaW9uIDExCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMQogICAgcmV0dXJuCg=="
+    },
+    "byteCode": {
+        "approval": "CyADAQDAhD0mAQp0YXNrX2NvdW50MRhAAAMoI2cxG0EAHTEZFEQxGESCAgTaL7MTBKic95w2GgCOAgAJACoAMRkUMRgUEEMxFiIJSTgQIhJESTgHMgoSRDgIJA9EIyhlRCIIKExnIkM2GgFJFYEgEkSxJLIIsgcishAjsgGzIkM=",
+        "clear": "C4EBQw=="
+    },
+    "compilerInfo": {
+        "compiler": "puya",
+        "compilerVersion": {
+            "major": 5,
+            "minor": 7,
+            "patch": 1
+        }
+    },
+    "events": [],
+    "templateVariables": {}
+}
